@@ -1,0 +1,32 @@
+; start with the identity pattern
+
+; for the NEXT uninitialized argument of the current pattern stream
+; TREE (arg can be on any ps leaf)
+
+;   1. based upon the ps's current INITIALIZED args, simplify the
+;   ps's sequence
+
+;   pattern looks at the sequence, suggest arguments for current ps
+;   node's pattern, based upon the sequence's "characteristics",
+;   returning only those arguments that are under the specified
+;   confidence threshold; each candidate sub-pattern must be asked to
+;   provide a confidence score, based upon the simplified sequence it
+;   is passed
+
+;   for each SUGGESTED ARG:
+
+;      2. set the uninitialized arg to the suggested ps arg, and sett ITS
+;      seq to the simplified seq from step 1.
+;
+;      3. copy the entire ps tree and enqueue it
+
+
+; simplify sequence, given partially initialized arg list
+
+; for the next uninit'd ps arg, query each candidate pattern for a
+; confidence score, given the simplified seq (the pattern looks at
+; *only* the simplified seq and determines if it is "applicable" to
+; the sequence)
+
+
+

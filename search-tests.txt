@@ -1,0 +1,207 @@
+(4 3 2 1 4 3 2 1)
+
+(40 30 20 10 40 30 20 10)
+
+(-2 0 2 -4 0 4)
+
+### queue size=3556 processed=9182      tested=9298
+FOUND GOAL: 
+<NODE ID:422789/381568 R=0 C=1.0 PS:(IDENTITY-PATT N=6 SEQ=(-2 0 2 -4 0 4) ARGS: (ALT-PATT N=6 SEQ=(-2
+ 0 2 -4 0 4) ARGS: (ADD-PREV2-PATT N=3 SEQ=(-2 2 0) ARGS: -2 2) (MULT-PATT N=3 SEQ=(0
+ -4 4) ARGS: 4 (ALT-PATT N=3 SEQ=(0 -1 1) ARGS: (BASIC-PATT N=2 SEQ=(0 1)) -1))))>
+
+(-2 -2 -3 -4 -6 -9)
+
+### queue size=768  processed=196       tested=223
+FOUND GOAL: 
+<NODE ID:528082/526304 R=0 C=1.0 PS:(IDENTITY-PATT N=6 SEQ=(-2 -2 -3 -4 -6 -9) ARGS: (NEG-PATT N=6 SEQ=(-2
+ -2 -3 -4 -6 -9) ARGS: (ADD-PATT N=6 SEQ=(2 2 3 4 6 9) ARGS: 1 (ADD-PREV2-PATT N=6 SEQ=(1
+ 1 2 3 5 8) ARGS: 1 1))))>
+
+
+(1 1 3 1 1 3)
+### queue size=4440 processed=5627      tested=4429
+FOUND GOAL: 
+<NODE ID:587410/546233 R=0 C=1.0 PS:(IDENTITY-PATT N=6 SEQ=(1 1 3 1 1 3) ARGS: (NEG-PATT N=6 SEQ=(1
+ 1 3 1 1 3) ARGS: (ADD-PATT N=6 SEQ=(-1 -1 -3 -1 -1 -3) ARGS: 1 (CYCLE-PATT N=6 SEQ=(-2
+ -2 -4 -2 -2 -4) ARGS: 3 (ADD-PREV2-PATT N=3 SEQ=(-2 -2 -4) ARGS: -2 -2)))))>
+
+[rather unexpected!]
+
+
+(1 1 5 1 1 5)
+### queue size=4462 processed=6052      tested=4823
+FOUND GOAL: 
+<NODE ID:651694/607700 R=0 C=1.0 PS:(IDENTITY-PATT N=6 SEQ=(1 1 5 1 1 5) ARGS: (NEG-PATT N=6 SEQ=(1
+ 1 5 1 1 5) ARGS: (ADD-PATT N=6 SEQ=(-1 -1 -5 -1 -1 -5) ARGS: 3 (CYCLE-PATT N=6 SEQ=(-4
+ -4 -8 -4 -4 -8) ARGS: 3 (ADD-PREV2-PATT N=3 SEQ=(-4 -4 -8) ARGS: -4 -4)))))>
+
+[also unexpected! i'm trying to come up with an *arbitrary* sub-cycle...]
+
+
+(1 9 3)
+### queue size=1747 processed=610       tested=545
+FOUND GOAL: 
+<NODE ID:663605/659147 R=0 C=1.0 PS:(IDENTITY-PATT N=3 SEQ=(1 9 3) ARGS: (ADD-PATT N=3 SEQ=(1
+ 9 3) ARGS: 1 (ALT-PATT N=3 SEQ=(0 8 2) ARGS: (ADD-PREV-PATT N=2 SEQ=(0 2) ARGS: (BASIC1-PATT N=2 SEQ=(2))) 8)))>
+
+[expands to (1 9 3 9 6 9 10 9 15 9 21 9 28 9 36 9 45 9 55 9)!]
+
+
+(1 3 6 10 15 21 28 36 45 55)
+
+
+
+(8 4 5 8 4 5 8 4 5)
+NOT FOUND!
+arbitrary pattern, cycle 3
+
+maybe add a pattern that looks for *arbitrary* snapshots of repeating numbers
+
+
+### queue size=2195 processed=12496     tested=13131
+FOUND GOAL: 
+<NODE ID:1162243/1125013 R=0 C=1.0 PS:(IDENTITY-PATT N=4 SEQ=(0 10 40 90) ARGS: (MULT-PATT N=4 SEQ=(0
+ 10 40 90) ARGS: 10 (NEG-PATT N=4 SEQ=(0 1 4 9) ARGS: (ADD-PREV-PATT N=4 SEQ=(0
+ -1 -4 -9) ARGS: (ADD-PATT N=4 SEQ=(-1 -3 -5) ARGS: 1 (ADD-PREV-PATT N=4 SEQ=(-2
+ -4 -6) ARGS: (IDENTITY-PATT N=4 SEQ=(-2 -2) ARGS: -2)))))))>
+
+the reverse pattern (90 40 10 0) has not (yet) been found; should probably
+adjust the neg-patt heuristic...
+
+
+(0 1 2 3 5 6 7 8 10 11 12 13)
+    pattern is: (ps add-patt (ps cycle-patt 4) (ps repeat-patt 4 (ps mult-patt 5))))
+[11/29/03] NOT FOUND!
+[11/29/04] added combine-patt and it was found!
+
+### queue size=1811 processed=490       tested=332
+FOUND GOAL: 
+<NODE ID:6744/2203 R=0 C=1.0 PS:(IDENTITY-PATT N=12 SEQ=(0 1 2 3 5 6 7 8 10 11 12 13) ARGS: (COMBINE-PATT N=12 SEQ=(0
+ 1 2 3 5 6 7 8 10 11 12 13) ARGS: (BASIC-PATT N=12 SEQ=(0 1 2 3 5 6 7 8 10 11 12 13)) (REPEAT-PATT N=12 SEQ=(0
+ 0 0 0 1 1 1 1 2 2 2 2) ARGS: 4 (BASIC-PATT N=3 SEQ=(0 1 2)))))>
+
+---
+
+FOUND GOAL: 
+1. Break [52]> (node-search (make-root-node 20000) '(10 -10 20 10 -10 20 10 -10 20))
+FOUND GOAL: 
+#S(SEARCH-RESULT
+   :GOAL
+   <NODE ID:122659/75615 R=0 C=1.0 PS:(IDENTITY-PATT N=9 SEQ=(10 -10 20 10 -10 20 10 -10 20) ARGS: (MULT-PATT N=9 SEQ=(10
+    -10 20 10 -10 20 10 -10 20) ARGS: 10 (CYCLE-PATT N=9 SEQ=(1 -1 2 1 -1 2 1 -1 2) ARGS: 3 (ALT-PATT N=3 SEQ=(1
+    -1 2) ARGS: (BASIC1-PATT N=2 SEQ=(1 2)) -1))))>
+   :PROCESSED-Q #<QUEUE #x20941119> :INTERNAL-NODE-COUNT 7029 :LEAF-NODE-COUNT 6389)
+
+---
+
+
+look what if found for "i^2"!  very unexpected...shows that we must specify a
+longer pattern if we want it to find the "right" pattern!
+
+1. Break [52]> (node-search (make-root-node 20000) '(0 1 2 9 16))
+
+FOUND GOAL: 
+<NODE ID:161260/133540 R=0 C=1.0 PS:(IDENTITY-PATT N=5 SEQ=(0 1 2 9 16) ARGS: (ADD-PREV-PATT N=5 SEQ=(0
+ 1 2 9 16) ARGS: (REPEAT-PATT N=5 SEQ=(1 1 7 7) ARGS: (BASIC-PATT N=4 SEQ=(1 7)) (ALT-PATT N=4 SEQ=(1
+ 7) ARGS: 1 7))))>
+#S(SEARCH-RESULT
+   :GOAL
+   <NODE ID:161260/133540 R=0 C=1.0 PS:(IDENTITY-PATT N=5 SEQ=(0 1 2 9 16) ARGS: (ADD-PREV-PATT N=5 SEQ=(0
+    1 2 9 16) ARGS: (REPEAT-PATT N=5 SEQ=(1 1 7 7) ARGS: (BASIC-PATT N=4 SEQ=(1 7)) (ALT-PATT N=4 SEQ=(1
+    7) ARGS: 1 7))))>
+   :PROCESSED-Q #<QUEUE #x20E169E1> :INTERNAL-NODE-COUNT 3451 :LEAF-NODE-COUNT 2749)
+
+---
+
+Even better...when I extended the pattern to be '(0 1 4 9 16 25) I got:
+And it works for the "intended" sequence, which is i^2!
+
+#S(SEARCH-RESULT
+   :GOAL
+   <NODE ID:24789/8742 R=0 C=1.0 PS:(IDENTITY-PATT N=6 SEQ=(0 1 4 9 16 25) ARGS: (ADD-PREV-PATT N=6 SEQ=(0
+    1 4 9 16 25) ARGS: (ADD-PATT N=6 SEQ=(1 3 5 7 9) ARGS: -1 (MULT-PATT N=6 SEQ=(2
+    4 6 8 10) ARGS: 2 (BASIC-PATT N=6 SEQ=(1 2 3 4 5))))))>
+   :PROCESSED-Q #<QUEUE #x20380F55> :INTERNAL-NODE-COUNT 2134
+   :LEAF-NODE-COUNT 1880)
+
+---
+
+Can't find '(2 4 8 16 32 64)
+
+---
+
+This one is like subtract-prev (which is not a pattern we have)
+
+### queue size=852  expanded=230        tested=126
+#S(SEARCH-RESULT
+   :GOAL
+   <NODE ID:3314/1483 R=0 C=0.0 PS:(IDENTITY-PATT N=6 SEQ=(1 -1 -4 -8 -13 -19) ARGS: (ADD-PATT N=6 SEQ=(1 -1 -4 -8 -13 -19) ARGS: 1 (NEG-PATT N=6 SEQ=(0
+    -2 -5 -9 -14 -20) ARGS: (ADD-PREV-PATT N=6 SEQ=(0 2 5 9 14 20) ARGS: (BASIC1-PATT N=6 SEQ=(2 3 4 5 6))))))>
+   :PROCESSED-Q #<QUEUE #x224E1BC9> :INTERNAL-NODE-COUNT 235 :LEAF-NODE-COUNT 130)
+
+
+---
+
+Kind of a surprising result.  Solution is "correct".
+
+Was expecting/looking for:
+(ps-gen (ps combine-patt (ps repeat-patt 3) (ps fixed-cycle-patt '(0 1 0))))
+
+Note how this is another example of how cycle length agreement is needed on 2
+sibling branches (currently, they have to find the same length
+serendipitously).
+
+
+#S(SEARCH-RESULT
+   :GOAL
+   <NODE ID:663396/640563 R=0 C=1.0 PS:(IDENTITY-PATT N=9 SEQ=(0 1 0 1 2 1 2 3 2) ARGS: (COMBINE-PATT N=9 SEQ=(0 1 0 1 2 1 2 3 2) ARGS: (ADD-PREV-PATT N=9 SEQ=(0
+    1 0 1 2 1 2 3 2) ARGS: (FIXED-CYCLE-PATT N=9 SEQ=(1 -1 1 1 -1 1 1 -1) ARGS: (1 -1 1))) (FIXED-CYCLE-PATT N=9 SEQ=(0 2 0 0 2 0 0 2 0) ARGS: (0
+    2 0))))>
+   :PROCESSED-Q #<QUEUE #x23D9FD95> :INTERNAL-NODE-COUNT 3309 :LEAF-NODE-COUNT 1153)
+
+
+---
+
+nice test of the (new) alt-patt, which allows alternation to occur at larger
+intervals than 1
+
+(ps-gen (ps alt-patt 1 2 (ps basic1-patt) (ps basic1-patt)))
+
+And it found it!!!
+
+#S(SEARCH-RESULT
+   :GOAL
+   <NODE ID:2083/1195 R=0 C=1.0 PS:(IDENTITY-PATT N=20 SEQ=(1 1 2 2 3 4 3 5 6 4 7 8 5 9 10 6 11 12 7 13) ARGS: (ALT-PATT N=20 SEQ=(1 1 2 2 3 4 3
+    5 6 4 7 8 5 9 10 6 11 12 7 13) ARGS: 1 2 (BASIC1-PATT N=7 SEQ=(1 2 3 4 5 6 7)) (BASIC1-PATT N=13 SEQ=(1 2 3 4 5 6 7 8 9 10 11 12 13))))>
+   :PROCESSED-Q #<QUEUE #x2084C941> :INTERNAL-NODE-COUNT 110 :LEAF-NODE-COUNT 67)
+
+
+----
+
+here's an example of why I need a combine-mult pattern: (i.e. a mult pattern
+that takes 2 streams).  (a combine-mult pattern would give us exponentials, as
+well!)
+
+this is, perhaps, a good example of where (additionally) incorporating a
+bottom-up approach would help; by finding the 3-cycle first, this could be
+reused within different branches, rather than having to be "found"
+independently multiple times
+
+(ps-gen (ps neg-patt (ps mult2-patt (ps fixed-cycle-patt '(2 0 2)) (ps repeat-patt 3 (ps basic1-patt)))))
+
+(-2 0 -2 -4 0 -4 -6 0 -6 -8 0 -8 -10 0 -10 -12 0 -12 -14 0)
+
+---
+
+a basic, non-trivial test of the repeat-patt
+
+(3 3 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 6 6)
+
+#S(SEARCH-RESULT
+   :GOAL
+   <NODE ID:43591/22038 R=0 C=1.0 PS:(ROOT-PATT N=20 SEQ=(3 3 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 6 6) ARGS: (REPEAT-PATT N=20 SEQ=(3
+    3 4 4 4 4 5 5 5 5 5 5 6 6 6 6 6 6 6 6) ARGS: (MULT-PATT N=4 SEQ=(2 4 6 8) ARGS: 2 (BASIC1-PATT N=4 SEQ=(1
+    2 3 4))) (ADD-PATT N=4 SEQ=(3 4 5 6) ARGS: 3 (BASIC-PATT N=4 SEQ=(0 1 2 3)))))>
+   :STARVED-Q #<QUEUE #x25807891> :PROCESSED-Q #<QUEUE #x25807879> :INTERNAL-NODE-COUNT 4020
+   :LEAF-NODE-COUNT 1239)

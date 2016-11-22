@@ -1,0 +1,111 @@
+- problematic patterns: what happens when FIRST arg can be a pattern stream?
+How do we suggest appropriate pattern streams?  It seems that we DON'T want to
+simpli
+
+    
+
+//- can we still find (1 1 1 1 1 1) ???
+
+//- what about mult-prev and combine-mult???
+
+//- finish implementing rise-fall-patt
+
+- tabulate average branching factor
+
+//- consider if we need a pattern for an *arbitrary* repeating pattern (could be
+//interesting!) [done!]
+
+- should probably reduce the "default" confidence to < 1.0 (i.e. that
+confidence to use when we can't really determine whether the pattern is
+applicable); this will help avoid penalizing patterns that can make a
+reasonable assessment of the current sequence
+
+- compile summary of pattern heuristics
+
+    - review which patterns actually have to provide an "interesting" list of
+    integers...how many actually have a large or infinite breadth?
+
+
+//- must think about the iterative aspect of my algorithm [tabling it for now]
+
+- determine which sequence I would like demonstrate the system on
+
+    - sequences that it CAN find vs sequences it CANNOT
+
+- test all sequences
+
+    - debug 'div by zero' error
+
+- make improvements, add new patterns, etc., to allow system to solve unsolved
+sequences
+
+//    - consider exponential pattern
+
+- compile results
+
+    - search size (processed node counts): internal nodes, leaf (executable)
+    nodes
+
+    - compare against brute force (no heuristics); maybe, attempt to calculate
+    complexity of brute for to reproduce a solution found w/heuristics
+
+    - could be interesting (for presentation/paper) to graph queue size,
+    processed and tested count
+
+//- improve output 
+//    - pretty print pattern solutions
+//    - actually extrapolate the sequence (by a few terms, perhaps)
+
+
+- clean up source code; remove old comments; format
+
+    
+
+
+----
+
+
+make the search iterative-lengthening
+
+    One possible approach: when reusing the processed nodes, reassign rations
+    *directly* to the leaf nodes, based upon their confidences.  The idea is
+    that "you got this far" and now a pattern is reporting high confidence, so
+    why not re-allocate the ration based upon what we now know (or think we
+    know!)?
+
+exponentials
+
+    n nested multiplications generates n^i
+
+//        can find via the combine-patt! (we dont allow nested multiplications,
+//        as the 1st arg to mult-patt must a constant)   [IT WORKED!]
+
+    i^n
+
+
+- neg-patt should give a high-confidence if pattern is descending.  before &
+after adjusting, try solving (90 40 10 0 90 40 10 0)
+
+
+I guess the order of iterating through our patterns is irrevelvant, if we're
+doing a breadth-first search, huh?  That is, there's no point in ordering the
+patterns, because we can't really have a reasonable idea of whether a
+particular one is applicable (also we assume we won't have to look too "deep",
+so might as well examine *all* the simple solutions first!)
+
+
+- see if there are ever cases where a low confident node "climbs a hill" and
+expands into a higher confidence node
+
+
+- see what other interesting patterns we can find with the combine-patt (can
+exponentials be found?  2^i)
+
+
+- do we need an explicit pattern for capturing cycles of *arbitrary*
+sequences?  so that, if we find a repeating pattern, but can't figure out a
+mathematical expression for the subpattern, it doesn't actually matter...we
+just repeat "what we see"
+
+- do we need more constants?  do we need to impl beam search on constants'
+search space?
